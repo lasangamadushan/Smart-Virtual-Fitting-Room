@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Lasanga Madushan\Desktop\SmartVFR\Build\CMakeFiles\0fc1e40ff6e4ccdf21d3e14e2617a24a\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A178C4ED-6DFF-3967-8B65-C788F4C13AFA}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

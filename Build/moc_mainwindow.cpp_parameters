@@ -1,0 +1,4 @@
+--compiler-flavor=msvc
+-o
+C:/Users/Lasanga Madushan/Desktop/SmartVFR/Build/moc_mainwindow.cpp
+C:/Users/Lasanga Madushan/Desktop/SmartVFR/mainwindow.h

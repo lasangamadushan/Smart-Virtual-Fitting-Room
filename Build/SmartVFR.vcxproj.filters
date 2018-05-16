@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Lasanga Madushan\Desktop\SmartVFR\SmartVFR.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Lasanga Madushan\Desktop\SmartVFR\mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Lasanga Madushan\Desktop\SmartVFR\Build\moc_mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Lasanga Madushan\Desktop\SmartVFR\mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Lasanga Madushan\Desktop\SmartVFR\Build\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Lasanga Madushan\Desktop\SmartVFR\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\Lasanga Madushan\Desktop\SmartVFR\Build\CMakeFiles\7ffb8451222be8b9986d522e10be15d6\moc_mainwindow.cpp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Lasanga Madushan\Desktop\SmartVFR\mainwindow.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{F4C96370-92E5-3C37-9C14-393A2ECD3C4D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{73EBB529-C312-3E22-8BBC-3F2B4DA1F2E6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A178C4ED-6DFF-3967-8B65-C788F4C13AFA}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
