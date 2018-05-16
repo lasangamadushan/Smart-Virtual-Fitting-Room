@@ -19,6 +19,9 @@ public:
 private slots:
 	void on_PushButton_clicked();
 
+private slots:
+	void on_browsebtn_clicked();
+
 
 private:
     Ui::MainWindow *ui;
@@ -27,7 +30,7 @@ private:
 };
 
 //namespace {
-//	extern bool clicked;
+	extern bool clicked;
 //}
 
 #endif // MAINWINDOW_H

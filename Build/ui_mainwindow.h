@@ -32,6 +32,8 @@ public:
     QGridLayout *gridLayout;
     QPushButton *pushButton;
     QLabel *label;
+    QPushButton *browsebtn;
+    QLabel *label_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -39,8 +41,8 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(350, 800);
-        MainWindow->setMaximumSize(QSize(400, 800));
+        MainWindow->resize(350, 720);
+        MainWindow->setMaximumSize(QSize(350, 720));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         gridLayoutWidget = new QWidget(centralwidget);
@@ -60,6 +62,12 @@ public:
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
+        browsebtn = new QPushButton(centralwidget);
+        browsebtn->setObjectName(QStringLiteral("browsebtn"));
+        browsebtn->setGeometry(QRect(190, 10, 75, 23));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(60, 10, 91, 16));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -77,8 +85,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Smart Virtual Fitting Room", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "click me", Q_NULLPTR));
-        label->setText(QApplication::translate("MainWindow", "nothing", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("MainWindow", "Dress me", Q_NULLPTR));
+        label->setText(QString());
+        browsebtn->setText(QApplication::translate("MainWindow", "Browse", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MainWindow", "Import a model", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -90,7 +90,7 @@ void pp_callback(const pcl::visualization::PointPickingEvent& event, void*
 }
 
 boost::shared_ptr<pcl::visualization::PCLVisualizer> customColourVis
-(pcl::PointCloud<pcl::PointXYZRGBA>::ConstPtr cloud)
+(pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr cloud)
 {
 	// -------------------------------------------- 
 	// -----Open 3D viewer and add point cloud----- 
@@ -98,7 +98,7 @@ boost::shared_ptr<pcl::visualization::PCLVisualizer> customColourVis
 	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new
 		pcl::visualization::PCLVisualizer("Virtual Fitting Room"));
 	viewer->setBackgroundColor(0.5, 0.5, 0.5);
-	viewer->addPointCloud<pcl::PointXYZRGBA>(cloud, "sample cloud");
+	viewer->addPointCloud<pcl::PointXYZRGB>(cloud, "sample cloud");
 	viewer->setPointCloudRenderingProperties
 	(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "sample cloud");
 	viewer->addCoordinateSystem(1.0);
@@ -220,6 +220,90 @@ void align(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr body, pcl::PointCloud<pcl::Po
 	move(dress, z1 - Br.z, 0.0, 'z') + Dr.z;
 }
 
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr background_init() {
+
+	pcl::PointCloud<pcl::PointXYZ>::Ptr basic_cloud_ptr(new pcl::PointCloud<pcl::PointXYZ>);
+	pcl::PointCloud<pcl::PointXYZRGB>::Ptr point_cloud_ptr(new pcl::PointCloud<pcl::PointXYZRGB>);
+	std::cout << "Genarating example point clouds.\n\n";
+	// We're going to make an ellipse extruded along the z-axis. The colour for
+	// the XYZRGB cloud will gradually go from red to green to blue.
+	uint8_t r(184), g(191), b(193);
+	for (float y(-2.0); y <= 0.2; y += 0.05)
+	{
+		for (float angle(0.0); angle <= 360.0; angle += 0.1)
+		{
+			pcl::PointXYZ basic_point;
+			basic_point.x = 10 * cosf(pcl::deg2rad(angle));
+			basic_point.y = y;
+			basic_point.z = 10 * sinf(pcl::deg2rad(angle));
+			basic_cloud_ptr->points.push_back(basic_point);
+
+			pcl::PointXYZRGB point;
+			point.x = basic_point.x;
+			point.y = basic_point.y;
+			point.z = basic_point.z;
+			uint32_t rgb = (static_cast<uint32_t>(r) << 16 |
+				static_cast<uint32_t>(g) << 8 | static_cast<uint32_t>(b));
+			point.rgb = *reinterpret_cast<float*>(&rgb);
+			point_cloud_ptr->points.push_back(point);
+		}
+	}
+	for (float radius(0.1); radius <= 10.0; radius += 0.1) {
+		for (float angle(0.0); angle <= 360.0; angle += 0.1)
+		{
+			pcl::PointXYZ basic_point;
+			basic_point.x = radius * cosf(pcl::deg2rad(angle));
+			basic_point.y = 0.2;
+			basic_point.z = radius * sinf(pcl::deg2rad(angle));
+			basic_cloud_ptr->points.push_back(basic_point);
+
+			pcl::PointXYZRGB point;
+			point.x = basic_point.x;
+			point.y = basic_point.y;
+			point.z = basic_point.z;
+			uint32_t rgb = (static_cast<uint32_t>(r) << 16 |
+				static_cast<uint32_t>(g) << 8 | static_cast<uint32_t>(b));
+			point.rgb = *reinterpret_cast<float*>(&rgb);
+			point_cloud_ptr->points.push_back(point);
+		}
+	}
+	r = 100;
+	g = 100;
+	b = 100;
+	for (float radius(0.1); radius <= 30.0; radius += 0.1) {
+		for (float angle(0.0); angle <= 360.0; angle += 0.1)
+		{
+			pcl::PointXYZ basic_point;
+			basic_point.x = radius * cosf(pcl::deg2rad(angle));
+			basic_point.y = -2;
+			basic_point.z = radius * sinf(pcl::deg2rad(angle));
+			basic_cloud_ptr->points.push_back(basic_point);
+
+			pcl::PointXYZRGB point;
+			point.x = basic_point.x;
+			point.y = basic_point.y;
+			point.z = basic_point.z;
+			uint32_t rgb = (static_cast<uint32_t>(r) << 16 |
+				static_cast<uint32_t>(g) << 8 | static_cast<uint32_t>(b));
+			point.rgb = *reinterpret_cast<float*>(&rgb);
+			point_cloud_ptr->points.push_back(point);
+		}
+	}
+	basic_cloud_ptr->width = (int)basic_cloud_ptr->points.size();
+	basic_cloud_ptr->height = 1;
+	point_cloud_ptr->width = (int)point_cloud_ptr->points.size();
+	point_cloud_ptr->height = 1;
+	return point_cloud_ptr;
+
+
+}
+
+
+
+
+
+
+
 int
 main(int argc, char** argv) {
 	QApplication app(argc, argv);
@@ -237,23 +321,26 @@ main(int argc, char** argv) {
 	pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cd(new pcl::PointCloud<pcl::PointXYZRGBA>);
 	pcl::io::loadPLYFile("data/sachin4.ply", *cd);
 	pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cd1(new pcl::PointCloud<pcl::PointXYZRGBA>);
-	pcl::io::loadPLYFile("data/shirt4.ply", *cd1);
-	//Create the filtering object
-
-	//pcl::StatisticalOutlierRemoval<pcl::PointXYZ> sor;
-	//sor.setInputCloud(*cd);
-	//sor.setMeanK(50);
-	//sor.setStddevMulThresh(1.0);
-	//sor.filter(*cloud_filtered);
+	pcl::io::loadPLYFile("data/shirt_green.ply", *cd1);
+	
 
 	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
-	viewer = customColourVis(cd);
+	viewer = customColourVis(background_init());
+	viewer->addPointCloud<pcl::PointXYZRGBA>(cd, "body");
 	viewer->addPointCloud<pcl::PointXYZRGBA>(cd1, "shirt");
 	viewer->setCameraPosition(43,15,40,0,0,0,0);
 	v = viewer;
 
+
+
+
+
 	bool onceRun= false;
 	clicked = false;
+
+
+
+
 	while (!viewer->wasStopped())
 	{
 		viewer->spinOnce(100);
@@ -295,8 +382,8 @@ main(int argc, char** argv) {
 			}
 			move(cd, xsum / pointcount, 0.0, 'x');
 			move(cd, zsum / pointcount, 0.0, 'z');
-			viewer->removePointCloud("sample cloud");
-			viewer->addPointCloud<pcl::PointXYZRGBA>(cd, "sample cloud");
+			viewer->removePointCloud("body");
+			viewer->addPointCloud<pcl::PointXYZRGBA>(cd, "body");
 
 			for (size_t i = 0; i < cd->size(); i++)
 			{
@@ -364,89 +451,13 @@ main(int argc, char** argv) {
 		if (clicked) {
 			initializePoints();
 			align(cd, cd1, Bl, Br, Bm, Dl, Dr, Dm);
-			viewer->removePointCloud("sample cloud");
-			viewer->addPointCloud<pcl::PointXYZRGBA>(cd, "sample cloud");
+			viewer->removePointCloud("body");
+			viewer->addPointCloud<pcl::PointXYZRGBA>(cd, "body");
 			viewer->removePointCloud("shirt");
 			viewer->addPointCloud<pcl::PointXYZRGBA>(cd1, "shirt");
 			clicked = false;
 		}
-		if (!onceRun) {
-
-			pcl::PointCloud<pcl::PointXYZ>::Ptr basic_cloud_ptr(new pcl::PointCloud<pcl::PointXYZ>);
-			pcl::PointCloud<pcl::PointXYZRGB>::Ptr point_cloud_ptr(new pcl::PointCloud<pcl::PointXYZRGB>);
-			std::cout << "Genarating example point clouds.\n\n";
-			// We're going to make an ellipse extruded along the z-axis. The colour for
-			// the XYZRGB cloud will gradually go from red to green to blue.
-			uint8_t r(184), g(191), b(193);
-			for (float y(-2.0); y <= 0.2; y += 0.05)
-			{
-				for (float angle(0.0); angle <= 360.0; angle += 0.1)
-				{
-					pcl::PointXYZ basic_point;
-					basic_point.x = 10 * cosf(pcl::deg2rad(angle));
-					basic_point.y = y;
-					basic_point.z = 10 * sinf(pcl::deg2rad(angle));
-					basic_cloud_ptr->points.push_back(basic_point);
-
-					pcl::PointXYZRGB point;
-					point.x = basic_point.x;
-					point.y = basic_point.y;
-					point.z = basic_point.z;
-					uint32_t rgb = (static_cast<uint32_t>(r) << 16 |
-						static_cast<uint32_t>(g) << 8 | static_cast<uint32_t>(b));
-					point.rgb = *reinterpret_cast<float*>(&rgb);
-					point_cloud_ptr->points.push_back(point);
-				}
-			}
-			for (float radius(0.1); radius <= 10.0; radius += 0.1) {
-				for (float angle(0.0); angle <= 360.0; angle += 0.1)
-				{
-					pcl::PointXYZ basic_point;
-					basic_point.x = radius * cosf(pcl::deg2rad(angle));
-					basic_point.y = 0.2;
-					basic_point.z = radius * sinf(pcl::deg2rad(angle));
-					basic_cloud_ptr->points.push_back(basic_point);
-
-					pcl::PointXYZRGB point;
-					point.x = basic_point.x;
-					point.y = basic_point.y;
-					point.z = basic_point.z;
-					uint32_t rgb = (static_cast<uint32_t>(r) << 16 |
-						static_cast<uint32_t>(g) << 8 | static_cast<uint32_t>(b));
-					point.rgb = *reinterpret_cast<float*>(&rgb);
-					point_cloud_ptr->points.push_back(point);
-				}
-			}
-			r=100;
-			g=100;
-			b=100;
-			for (float radius(0.1); radius <= 30.0; radius += 0.1) {
-				for (float angle(0.0); angle <= 360.0; angle += 0.1)
-				{
-					pcl::PointXYZ basic_point;
-					basic_point.x = radius * cosf(pcl::deg2rad(angle));
-					basic_point.y = -2;
-					basic_point.z = radius * sinf(pcl::deg2rad(angle));
-					basic_cloud_ptr->points.push_back(basic_point);
-
-					pcl::PointXYZRGB point;
-					point.x = basic_point.x;
-					point.y = basic_point.y;
-					point.z = basic_point.z;
-					uint32_t rgb = (static_cast<uint32_t>(r) << 16 |
-						static_cast<uint32_t>(g) << 8 | static_cast<uint32_t>(b));
-					point.rgb = *reinterpret_cast<float*>(&rgb);
-					point_cloud_ptr->points.push_back(point);
-				}
-			}
-			basic_cloud_ptr->width = (int)basic_cloud_ptr->points.size();
-			basic_cloud_ptr->height = 1;
-			point_cloud_ptr->width = (int)point_cloud_ptr->points.size();
-			point_cloud_ptr->height = 1;
-
-			viewer->addPointCloud<pcl::PointXYZRGB>(point_cloud_ptr, "cylinder");
-
-		}
+			
 		onceRun = true;
 		boost::this_thread::sleep(boost::posix_time::microseconds(100000));
 	}
