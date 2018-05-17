@@ -14,6 +14,7 @@
 
 #include "mainwindow.h"
 
+pcl::PointCloud<pcl::PointXYZRGBA>::Ptr dressCloud(new pcl::PointCloud<pcl::PointXYZRGBA>);
 
 void addSphere(float x, float y, float z, boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer, std::string name) {
 	pcl::PointXYZRGBA o;
@@ -98,6 +99,7 @@ boost::shared_ptr<pcl::visualization::PCLVisualizer> customColourVis
 	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new
 		pcl::visualization::PCLVisualizer("Virtual Fitting Room"));
 	viewer->setBackgroundColor(0.5, 0.5, 0.5);
+	//viewer->setBackgroundColor(1, 1, 1);
 	viewer->addPointCloud<pcl::PointXYZRGB>(cloud, "sample cloud");
 	viewer->setPointCloudRenderingProperties
 	(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "sample cloud");
@@ -299,11 +301,6 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr background_init() {
 }
 
 
-
-
-
-
-
 int
 main(int argc, char** argv) {
 	QApplication app(argc, argv);
@@ -320,14 +317,12 @@ main(int argc, char** argv) {
 	
 	pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cd(new pcl::PointCloud<pcl::PointXYZRGBA>);
 	pcl::io::loadPLYFile("data/sachin4.ply", *cd);
-	pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cd1(new pcl::PointCloud<pcl::PointXYZRGBA>);
-	pcl::io::loadPLYFile("data/shirt_green.ply", *cd1);
+	
 	
 
 	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
 	viewer = customColourVis(background_init());
 	viewer->addPointCloud<pcl::PointXYZRGBA>(cd, "body");
-	viewer->addPointCloud<pcl::PointXYZRGBA>(cd1, "shirt");
 	viewer->setCameraPosition(43,15,40,0,0,0,0);
 	v = viewer;
 
@@ -450,11 +445,11 @@ main(int argc, char** argv) {
 		}
 		if (clicked) {
 			initializePoints();
-			align(cd, cd1, Bl, Br, Bm, Dl, Dr, Dm);
+			align(cd, dressCloud, Bl, Br, Bm, Dl, Dr, Dm);
 			viewer->removePointCloud("body");
 			viewer->addPointCloud<pcl::PointXYZRGBA>(cd, "body");
 			viewer->removePointCloud("shirt");
-			viewer->addPointCloud<pcl::PointXYZRGBA>(cd1, "shirt");
+			viewer->addPointCloud<pcl::PointXYZRGBA>(dressCloud, "shirt");
 			clicked = false;
 		}
 			

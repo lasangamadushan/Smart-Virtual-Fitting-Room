@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[4];
-    char stringdata0[55];
+    QByteArrayData data[9];
+    char stringdata0[142];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,11 +34,18 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 21), // "on_PushButton_clicked"
 QT_MOC_LITERAL(2, 33, 0), // ""
-QT_MOC_LITERAL(3, 34, 20) // "on_browsebtn_clicked"
+QT_MOC_LITERAL(3, 34, 20), // "on_browsebtn_clicked"
+QT_MOC_LITERAL(4, 55, 18), // "on_nextbtn_clicked"
+QT_MOC_LITERAL(5, 74, 18), // "on_prevbtn_clicked"
+QT_MOC_LITERAL(6, 93, 25), // "on_importDressbtn_clicked"
+QT_MOC_LITERAL(7, 119, 11), // "setDressImg"
+QT_MOC_LITERAL(8, 131, 10) // "getImgPath"
 
     },
     "MainWindow\0on_PushButton_clicked\0\0"
-    "on_browsebtn_clicked"
+    "on_browsebtn_clicked\0on_nextbtn_clicked\0"
+    "on_prevbtn_clicked\0on_importDressbtn_clicked\0"
+    "setDressImg\0getImgPath"
 };
 #undef QT_MOC_LITERAL
 
@@ -48,7 +55,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -56,12 +63,22 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x08 /* Private */,
-       3,    0,   25,    2, 0x08 /* Private */,
+       1,    0,   49,    2, 0x08 /* Private */,
+       3,    0,   50,    2, 0x08 /* Private */,
+       4,    0,   51,    2, 0x08 /* Private */,
+       5,    0,   52,    2, 0x08 /* Private */,
+       6,    0,   53,    2, 0x08 /* Private */,
+       7,    1,   54,    2, 0x08 /* Private */,
+       8,    1,   57,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    2,
+    QMetaType::QString, QMetaType::Int,    2,
 
        0        // eod
 };
@@ -74,10 +91,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->on_PushButton_clicked(); break;
         case 1: _t->on_browsebtn_clicked(); break;
+        case 2: _t->on_nextbtn_clicked(); break;
+        case 3: _t->on_prevbtn_clicked(); break;
+        case 4: _t->on_importDressbtn_clicked(); break;
+        case 5: _t->setDressImg((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 6: { QString _r = _t->getImgPath((*reinterpret_cast< int(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -105,13 +127,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 7;
     }
     return _id;
 }
