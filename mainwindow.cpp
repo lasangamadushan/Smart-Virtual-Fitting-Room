@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QPropertyAnimation>
 
 int w;
 int h;
@@ -11,10 +12,11 @@ int length_imgList;
 QString dressFileName;
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
+	QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+	
 	w = ui->dress_imglbl->width();
 	h = ui->dress_imglbl->height();
 
@@ -43,8 +45,8 @@ void MainWindow::on_PushButton_clicked() {
 }
 
 void MainWindow::on_browsebtn_clicked() {
-	QString filename = QFileDialog::getOpenFileName(this, "Open File", "C://");
-	qDebug() << filename;
+	//QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "C://", tr("All Files (*.*)"));
+	//qDebug() << filename;
 
 }
 
@@ -57,6 +59,10 @@ void MainWindow::on_nextbtn_clicked() {
 		imageIndex = length_imgList-1;
 	}
 	setDressImg(getImgPath(imageIndex));
+	QPropertyAnimation *anm = new QPropertyAnimation(ui->dress_imglbl,"geometry");
+	anm->setDuration(2000);
+	anm->setStartValue(10);
+
 }
 
 

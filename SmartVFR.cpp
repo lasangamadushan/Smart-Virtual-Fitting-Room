@@ -49,7 +49,7 @@ void initializePoints() {
 	Dl.x = -14.6477;
 	Dl.y = 11.0807;
 	Dl.z = 5.26833;
-	Dr.x = -14.6683;
+	Dr.x = -14.7683;
 	Dr.y = 11.1601;
 	Dr.z = 1.09654;
 	Dm.x = -13.0598;
@@ -250,6 +250,9 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr background_init() {
 			point_cloud_ptr->points.push_back(point);
 		}
 	}
+	r = 150;
+	g = 150;
+	b = 150;
 	for (float radius(0.1); radius <= 10.0; radius += 0.1) {
 		for (float angle(0.0); angle <= 360.0; angle += 0.1)
 		{
@@ -272,7 +275,7 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr background_init() {
 	r = 100;
 	g = 100;
 	b = 100;
-	for (float radius(0.1); radius <= 30.0; radius += 0.1) {
+	for (float radius(0.1); radius <= 50.0; radius += 0.1) {
 		for (float angle(0.0); angle <= 360.0; angle += 0.1)
 		{
 			pcl::PointXYZ basic_point;
@@ -316,14 +319,17 @@ main(int argc, char** argv) {
 	pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cloud_filtered(new pcl::PointCloud<pcl::PointXYZRGBA>);
 	
 	pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cd(new pcl::PointCloud<pcl::PointXYZRGBA>);
-	pcl::io::loadPLYFile("data/sachin4.ply", *cd);
+	pcl::io::loadPLYFile("data/sachinb.ply", *cd);
 	
 	
 
 	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
 	viewer = customColourVis(background_init());
+	viewer->setSize(683, 750);
+	viewer->setPosition(0, 0);
 	viewer->addPointCloud<pcl::PointXYZRGBA>(cd, "body");
-	viewer->setCameraPosition(43,15,40,0,0,0,0);
+	
+	viewer->setCameraPosition(43,15,40,0,20,0,0);
 	v = viewer;
 
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>350</width>
-    <height>398</height>
+    <height>428</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -20,32 +20,6 @@
    <string>Smart Virtual Fitting Room</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="browsebtn">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>10</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Browse</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>10</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Import a model</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="dress_imglbl">
     <property name="geometry">
      <rect>
@@ -59,7 +33,10 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true"> background-color: rgb(255, 255, 255)</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+border: 2px solid #8f8f91;
+border-radius: 12px;
+min-width: 80px;</string>
     </property>
     <property name="text">
      <string/>
@@ -68,11 +45,41 @@
    <widget class="QPushButton" name="nextbtn">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>260</x>
       <y>90</y>
-      <width>31</width>
+      <width>35</width>
       <height>161</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	font-size: 12px;
+    border: 2px solid #8f8f91;
+    border-radius: 6px;
+    min-width: 20px;
+background: #D5D5D5;
+
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.3 rgba(255, 255, 255, 255), stop:1 rgba(213, 213, 213,255));
+	
+	
+	border-left-color: rgb(67, 67, 67);
+	border-bottom-color: rgb(67, 67, 67);
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.3 rgba(255, 255, 255, 255), stop:1 rgba(213, 213, 213,255));
+	position:relative;
+	top:1px;
+	border-left-color: none;
+	border-bottom-color: none;
+	border-top-color: none;
+	border-right-color: none;
+}
+QPushButton:hover {
+  background-color: #D4D4D4;
+	position:relative;
+	top:1px;
+}</string>
     </property>
     <property name="text">
      <string>&gt;</string>
@@ -83,9 +90,37 @@
      <rect>
       <x>50</x>
       <y>90</y>
-      <width>31</width>
+      <width>35</width>
       <height>161</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	font-size: 12px;
+    border: 2px solid #8f8f91;
+    border-radius: 6px;
+    min-width: 20px;
+background: #D5D5D5;
+
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.3 rgba(255, 255, 255, 255), stop:1 rgba(213, 213, 213,255));
+	border-right-color: rgb(67, 67, 67);
+	border-bottom-color: rgb(67, 67, 67);
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.3 rgba(255, 255, 255, 255), stop:1 rgba(213, 213, 213,255));
+	position:relative;
+	top:1px;
+	border-left-color: none;
+	border-bottom-color: none;
+	border-top-color: none;
+	border-right-color: none;
+}
+QPushButton:hover {
+   background-color: #D4D4D4;
+	position:relative;
+	top:1px;
+}</string>
     </property>
     <property name="text">
      <string>&lt;</string>
@@ -100,6 +135,38 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    border-radius: 6px;
+    min-width: 80px;
+font-size: 18px;
+            color: #FFF;
+            padding: 4px 22px;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.5 rgba(94, 68, 133, 255), stop:1 rgba(126, 91, 178, 255));
+border: 2px solid #FFF;
+	border-top-color: rgb(50, 50, 50);
+	border-bottom-color: rgb(255, 255, 255);
+	border-left-color: rgb(255, 255, 255);
+	border-right-color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.5 rgba(126, 91, 178, 255), stop:1 rgba(94, 68, 133, 255));
+	position:relative;
+	top:1px;
+}
+QPushButton:pressed {
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.5 rgba(94, 68, 133, 255), stop:1 rgba(126, 91, 178, 255));
+	position:relative;
+	top:1px;
+font-color:#D4D4D4;
+	border-bottom-color: rgb(50, 50, 50);
+	border-left-color: rgb(50, 50, 50);
+	border-right-color: rgb(50, 50, 50);
+	border-top-color: rgb(255, 255, 255);
+}
+
+</string>
+    </property>
     <property name="text">
      <string>Dress me</string>
     </property>
@@ -107,11 +174,14 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>60</y>
+      <x>60</x>
+      <y>65</y>
       <width>101</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 16px;</string>
     </property>
     <property name="text">
      <string>Select a Dress</string>
@@ -126,10 +196,137 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="whatsThis">
+     <string/>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    border-radius: 6px;
+    min-width: 80px;
+font-size: 18px;
+            color: #FFF;
+            padding: 4px 22px;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.5 rgba(94, 68, 133, 255), stop:1 rgba(126, 91, 178, 255));
+border: 2px solid #FFF;
+	border-top-color: rgb(50, 50, 50);
+	border-bottom-color: rgb(255, 255, 255);
+	border-left-color: rgb(255, 255, 255);
+	border-right-color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.5 rgba(126, 91, 178, 255), stop:1 rgba(94, 68, 133, 255));
+	position:relative;
+	top:1px;
+}
+QPushButton:pressed {
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.5 rgba(94, 68, 133, 255), stop:1 rgba(126, 91, 178, 255));
+	position:relative;
+	top:1px;
+font-color:#D4D4D4;
+	border-bottom-color: rgb(50, 50, 50);
+	border-left-color: rgb(50, 50, 50);
+	border-right-color: rgb(50, 50, 50);
+	border-top-color: rgb(255, 255, 255);
+}
+
+</string>
+    </property>
     <property name="text">
      <string>Import Dress</string>
     </property>
    </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>0</y>
+      <width>361</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> background: #5E4485;</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>15</y>
+       <width>121</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size: 16px;
+            color: #FFF;</string>
+     </property>
+     <property name="text">
+      <string>Import a model</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="browsebtn">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>10</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	font-size: 12px;
+    border: 2px solid #8f8f91;
+    border-radius: 6px;
+    min-width: 20px;
+background: #D5D5D5;
+
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.3 rgba(255, 255, 255, 255), stop:1 rgba(213, 213, 213,255));
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.3 rgba(255, 255, 255, 255), stop:1 rgba(213, 213, 213,255));
+	position:relative;
+	top:1px;
+}
+QPushButton:hover {
+   background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.3 rgba(213, 213, 213, 255), stop:1 rgba(255, 255, 255,255));
+	position:relative;
+	top:1px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Browse</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>380</y>
+      <width>361</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> background: #5E4485;</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+   </widget>
+   <zorder>groupBox</zorder>
+   <zorder>dress_imglbl</zorder>
+   <zorder>nextbtn</zorder>
+   <zorder>prevbtn</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>label</zorder>
+   <zorder>importDressbtn</zorder>
+   <zorder>groupBox_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
